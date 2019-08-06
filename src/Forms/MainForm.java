@@ -18,6 +18,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainForm extends JFrame {
+    private static int calender1=0;
+    private int calender2;
+
     public MainForm() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close the application on JForm exit
         this.setTitle("Main Form");
@@ -53,8 +56,21 @@ public class MainForm extends JFrame {
      * Todo: This method logs the object HashCode in a text file, after refactoring the code; show warning message if the HashCode of Calender1 doesn't equal Calender2 HashCode
      */
     private void showNewCalender() {
-        SwingCalendar sc = new SwingCalendar();
+        SwingCalendar sc = SwingCalendar.getInstance();
+        sc.setVisible(true);
         Util.Logger.log("Object HC: " + sc.hashCode()); // Log Calender hash code
+
+
+        //this code is for testing the calenders objects hash
+        calender2= sc.hashCode();
+        if(MainForm.calender1==0)
+            MainForm.calender1=calender2;
+        else
+        {
+            if( MainForm.calender1!=calender2)
+                JOptionPane.showMessageDialog(null, "calenders objects dont have the same HASH" , "warning", JOptionPane.PLAIN_MESSAGE);
+        };
+
     }
 
 
